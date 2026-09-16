@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lohan Froissard Samain — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171a24;
+    --ink-soft:#22273a;
+    --paper:#f2ede2;
+    --coral:#e8503f;
+    --teal:#3c8c86;
+    --line:rgba(242,237,226,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Archivo Black', sans-serif;
+    font-weight:400;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:960px; margin:0 auto; padding:0 32px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(23,26,36,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; justify-content:space-between; align-items:center; padding:18px 32px;}
+  .nav-name{font-family:'Archivo Black', sans-serif; font-size:16px;}
+  nav ul{list-style:none; display:flex; gap:28px;}
+  nav a{text-decoration:none; font-size:14px; color:var(--paper); opacity:0.75; transition:opacity .2s;}
+  nav a:hover{opacity:1;}
+
+  /* HERO */
+  header.hero{
+    position:relative;
+    padding:120px 0 100px;
+    overflow:hidden;
+  }
+  header.hero::before{
+    content:"";
+    position:absolute; top:-20%; right:-10%;
+    width:600px; height:600px;
+    background:
+      repeating-linear-gradient(115deg, var(--coral) 0 3px, transparent 3px 46px);
+    opacity:0.12;
+    transform:rotate(8deg);
+    pointer-events:none;
+  }
+  .kicker{
+    color:var(--coral);
+    font-size:15px;
+    font-weight:600;
+    margin-bottom:18px;
+  }
+  h1.title{
+    font-size:clamp(42px, 8vw, 84px);
+    max-width:11ch;
+  }
+  .hero-sub{
+    margin-top:28px;
+    max-width:52ch;
+    font-size:19px;
+    color:rgba(242,237,226,0.78);
+  }
+  .hero-tags{
+    margin-top:34px;
+    display:flex; gap:12px; flex-wrap:wrap;
+  }
+  .tag{
+    border:1px solid var(--line);
+    padding:8px 16px;
+    border-radius:100px;
+    font-size:13px;
+    color:rgba(242,237,226,0.85);
+  }
+
+  /* SECTIONS */
+  section{
+    padding:80px 0;
+    border-top:1px solid var(--line);
+  }
+  .section-head{
+    display:flex; align-items:baseline; gap:16px;
+    margin-bottom:40px;
+  }
+  .section-num{
+    color:var(--coral);
+    font-family:'Archivo Black', sans-serif;
+    font-size:14px;
+  }
+  h2.section-title{
+    font-size:clamp(28px, 4vw, 40px);
+  }
+
+  /* A PROPOS */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:56px;
+  }
+  .about-grid p{ margin-bottom:18px; color:rgba(242,237,226,0.85); font-size:17px; }
+  .fact-card{
+    background:var(--ink-soft);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:26px;
+  }
+  .fact-card h3{ font-size:15px; color:var(--teal); margin-bottom:14px; }
+  .fact-card ul{ list-style:none; }
+  .fact-card li{
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+    color:rgba(242,237,226,0.85);
+  }
+  .fact-card li:last-child{border-bottom:none;}
+
+  /* PASSIONS */
+  .passion-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  .passion-card{
+    background:var(--ink-soft);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:28px 24px;
+    transition:border-color .2s, transform .2s;
+  }
+  .passion-card:hover{ border-color:var(--coral); transform:translateY(-3px); }
+  .passion-card h3{ font-size:20px; margin-bottom:10px; }
+  .passion-card p{ font-size:14.5px; color:rgba(242,237,226,0.72); }
+  .passion-mark{
+    display:inline-block;
+    width:34px; height:34px;
+    border-radius:50%;
+    background:var(--coral);
+    margin-bottom:16px;
+  }
+  .passion-card:nth-child(2) .passion-mark{ background:var(--teal); }
+  .passion-card:nth-child(3) .passion-mark{ background:#d9a441; }
+
+  /* OBJECTIFS */
+  .goals{
+    display:grid;
+    gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .goal-row{
+    background:var(--ink);
+    padding:24px 28px;
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:20px;
+    align-items:start;
+  }
+  .goal-row span{
+    font-family:'Archivo Black', sans-serif;
+    color:var(--coral);
+    font-size:14px;
+  }
+  .goal-row p{ color:rgba(242,237,226,0.82); font-size:16px; }
+
+  /* CONTACT */
+  footer.contact{
+    padding:90px 0 70px;
+    border-top:1px solid var(--line);
+  }
+  footer.contact h2{
+    font-size:clamp(30px,5vw,48px);
+    max-width:14ch;
+    margin-bottom:26px;
+  }
+  .contact-links{ display:flex; flex-wrap:wrap; gap:16px; margin-top:10px; }
+  .contact-links a{
+    text-decoration:none;
+    border:1px solid var(--line);
+    padding:14px 24px;
+    border-radius:6px;
+    font-size:15px;
+    display:inline-flex; align-items:center; gap:10px;
+    transition:background .2s, border-color .2s;
+  }
+  .contact-links a:hover{ background:var(--ink-soft); border-color:var(--coral); }
+  .foot-note{
+    margin-top:60px;
+    font-size:13px;
+    color:rgba(242,237,226,0.4);
+  }
+
+  @media (max-width:760px){
+    .about-grid{ grid-template-columns:1fr; }
+    .passion-grid{ grid-template-columns:1fr; }
+    .goal-row{ grid-template-columns:1fr; gap:6px; }
+    nav ul{ gap:16px; }
+    nav ul li:nth-child(4){ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+
+  a:focus-visible, .passion-card:focus-visible{
+    outline:2px solid var(--coral);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">Lohan F. Samain</div>
+    <ul>
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#passions">Passions</a></li>
+      <li><a href="#objectifs">Objectifs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Portfolio — BTS SIO option SISR</div>
+    <h1 class="title">Lohan Froissard Samain</h1>
+    <p class="hero-sub">Étudiant en BTS SIO, spécialisation infrastructures &amp; réseaux (SISR). Curieux de systèmes, de jeux vidéo et de bonnes histoires en manga — dans cet ordre selon les jours.</p>
+    <div class="hero-tags">
+      <span class="tag">Infrastructure & réseaux</span>
+      <span class="tag">Recherche d'alternance</span>
+      <span class="tag">Île-de-France</span>
+    </div>
+  </div>
+</header>
+
+<section id="apropos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">À propos</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>Je m'appelle Lohan, actuellement en BTS Services Informatiques aux Organisations, option SISR (Solutions d'Infrastructure, Systèmes et Réseaux). Après un bac général avec les spécialités SES et SVT, j'ai voulu me diriger vers quelque chose de plus concret : comprendre comment les systèmes qui font tourner une entreprise sont montés, configurés et maintenus.</p>
+        <p>Ce que j'aime dans l'infrastructure, c'est le même plaisir que je trouve ailleurs : un système avec des règles claires, où chaque pièce a sa place — un peu comme un jeu bien conçu ou un scénario de manga bien construit.</p>
+      </div>
+      <div class="fact-card">
+        <h3>Parcours</h3>
+        <ul>
+          <li>BTS SIO — option SISR (en cours)</li>
+          <li>Bac général — spé. SES / SVT</li>
+          <li>Basé en Île-de-France</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="passions">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Passions</h2>
+    </div>
+    <div class="passion-grid">
+      <div class="passion-card">
+        <span class="passion-mark"></span>
+        <h3>Sport</h3>
+        <p>Une bonne manière de décrocher des écrans, garder un rythme et une discipline qui se retrouve aussi dans la façon dont j'aborde mes projets.</p>
+      </div>
+      <div class="passion-card">
+        <span class="passion-mark"></span>
+        <h3>Jeux vidéo</h3>
+        <p>Stratégie, logique, gestion de systèmes complexes — les jeux vidéo m'ont donné le goût de comprendre comment les choses fonctionnent sous le capot.</p>
+      </div>
+      <div class="passion-card">
+        <span class="passion-mark"></span>
+        <h3>Mangas</h3>
+        <p>Des histoires construites avec précision, où le rythme et la structure comptent autant que l'intrigue. J'aime cette rigueur narrative.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="objectifs">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Objectifs</h2>
+    </div>
+    <div class="goals">
+      <div class="goal-row">
+        <span>Court terme</span>
+        <p>Trouver une alternance en Île-de-France sur un poste infrastructure (administration systèmes, réseaux, virtualisation) pour la suite de mon BTS SIO SISR.</p>
+      </div>
+      <div class="goal-row">
+        <span>Moyen terme</span>
+        <p>Monter en compétences sur l'administration réseau et la sécurité des systèmes en environnement professionnel réel.</p>
+      </div>
+      <div class="goal-row">
+        <span>Long terme</span>
+        <p>Évoluer vers un poste d'administrateur systèmes et réseaux, avec une spécialisation à affiner selon les missions rencontrées en entreprise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <h2>Discutons de votre besoin d'alternant SISR.</h2>
+    <div class="contact-links">
+      <a href="mailto:ton.email@exemple.com">Email</a>
+      <a href="https://www.linkedin.com/in/ton-profil" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/ton-pseudo" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="foot-note">Lohan Froissard Samain — Portfolio BTS SIO SISR</p>
+  </div>
+</footer>
+
+</body>
+</html>
